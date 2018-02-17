@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import com.facebook.litho.Column;
 import com.facebook.litho.Component;
 import com.facebook.litho.ComponentContext;
-import com.facebook.litho.ComponentLayout;
 import com.facebook.litho.annotations.FromEvent;
 import com.facebook.litho.annotations.LayoutSpec;
 import com.facebook.litho.annotations.OnCreateLayout;
@@ -37,7 +36,7 @@ import java.util.List;
 public class CardElementSpec {
 
   @OnCreateLayout
-  static ComponentLayout onCreateLayout(
+  static Component onCreateLayout(
     ComponentContext c,
     @Prop int id,
     @Prop Feed.FeedType type,
@@ -45,7 +44,7 @@ public class CardElementSpec {
     @Prop String description,
     @Prop int[] imageRes) {
 
-    Component<Text> titleComp = Text.create(c, 0, R.style.TextAppearance_AppCompat_Title)
+    Component titleComp = Text.create(c, 0, R.style.TextAppearance_AppCompat_Title)
       .text(title)
       .marginDip(YogaEdge.TOP, 16)
       .marginDip(YogaEdge.BOTTOM, 8)
@@ -54,7 +53,7 @@ public class CardElementSpec {
       .textColor(Color.BLACK)
       .build();
 
-    Component<Text> descComp = Text.create(c)
+    Component descComp = Text.create(c)
       .text(description)
       .maxLines(4)
       .ellipsize(TextUtils.TruncateAt.END)
@@ -73,7 +72,7 @@ public class CardElementSpec {
 
   }
 
-  private static Component<Image> getImageComp(ComponentContext c, int imageRes) {
+  private static Component getImageComp(ComponentContext c, int imageRes) {
     return Image.create(c)
       .drawableRes(imageRes)
       .widthPercent(100)
@@ -82,7 +81,7 @@ public class CardElementSpec {
       .build();
   }
 
-  private static Component<RecyclerCollectionComponent> getRecyclerComp(ComponentContext c, int[] imageRes) {
+  private static Component getRecyclerComp(ComponentContext c, int[] imageRes) {
     return RecyclerCollectionComponent.create(c)
       .heightDip(200)
       .itemDecoration(new ImageItemDecoration())
